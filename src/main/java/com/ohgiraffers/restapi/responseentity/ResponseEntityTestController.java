@@ -128,7 +128,7 @@ public class ResponseEntityTestController {
 
 
         // 수정할 포켓몬 정보 찾아오기
-        PokemonDTO foundPokemon = pokemons.stream().filter(pokemon -> pokemon.getNo() == pokemonNo).toList().get(0);
+        PokemonDTO foundPokemon = pokemonNo.stream().filter(pokemon -> pokemon.getNo() == pokemonNo).toList().get(0);
 
 
 
@@ -137,7 +137,7 @@ public class ResponseEntityTestController {
         foundPokemon.setType(modifyInfo.getType());
         foundPokemon.setName(modifyInfo.getName());
 
-        return ResponseEntity.created(URI.create("/entity/pokemons/" + pokemons)).build();
+        return ResponseEntity.created(URI.create("/entity/pokemons/" + pokemonNo)).build();
     }
 
 
@@ -145,8 +145,8 @@ public class ResponseEntityTestController {
     @DeleteMapping("/pokemons/{pokemonNo}")
     public ResponseEntity<?> removePokemon(@PathVariable int pokemonNo) {
 
-        PokemonDTO foundPokemon = pokemons.stream().filter(pokemon -> pokemon.getNo() == pokemonNo).toList().get(0);
-        pokemons.remove(foundPokemon);
+        PokemonDTO foundPokemon = pokemonNo.stream().filter(pokemon -> pokemon.getNo() == pokemonNo).toList().get(0);
+        pokemonNo.remove(foundPokemon);
 
         return ResponseEntity.noContent().build();
     }
