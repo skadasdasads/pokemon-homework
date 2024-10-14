@@ -20,9 +20,6 @@ public class PokemonDTO {
         this.property = property;
     }
 
-    public PokemonDTO(int i, String pokemon01, String test03, String 피카츄, LocalDate now) {
-    }
-
     public int getNo() {
         return no;
     }

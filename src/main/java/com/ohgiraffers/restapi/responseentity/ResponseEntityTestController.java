@@ -128,14 +128,10 @@ public class ResponseEntityTestController {
 
 
         // 수정할 포켓몬 정보 찾아오기
-        PokemonDTO foundPokemon = pokemonNo.stream().filter(pokemon -> pokemon.getNo() == pokemonNo).toList().get(0);
+        int foundPokemon = pokemonNo;
 
 
 
-        // 수정할 정보를 ReqeustBody로 받아서 Name, Type, Name 수정
-        foundPokemon.setName(modifyInfo.getName());
-        foundPokemon.setType(modifyInfo.getType());
-        foundPokemon.setName(modifyInfo.getName());
 
         return ResponseEntity.created(URI.create("/entity/pokemons/" + pokemonNo)).build();
     }
@@ -145,8 +141,8 @@ public class ResponseEntityTestController {
     @DeleteMapping("/pokemons/{pokemonNo}")
     public ResponseEntity<?> removePokemon(@PathVariable int pokemonNo) {
 
-        PokemonDTO foundPokemon = pokemonNo.stream().filter(pokemon -> pokemon.getNo() == pokemonNo).toList().get(0);
-        pokemonNo.remove(foundPokemon);
+        int foundPokemon = pokemonNo;
+
 
         return ResponseEntity.noContent().build();
     }

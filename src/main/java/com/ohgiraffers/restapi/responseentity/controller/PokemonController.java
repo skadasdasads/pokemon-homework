@@ -7,7 +7,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
 public class PokemonController {
 
     /*          http 요청메서드
@@ -17,11 +19,17 @@ public class PokemonController {
      * D delete Delete
      * */
 
+    private final PokemonService pokemonService;
+
+    public PokemonController(PokemonService pokemonService) {
+        this.pokemonService = pokemonService;
+    }
+
     // Post Mapping 포켓몬 등록
     @PostMapping("/api/v1/pokemon")
     public String registNewPokemon(@RequestBody PokemonDTO pokemonDTO) {
 
-        PokemonService.registNewPokemon(newPokemon);
+        pokemonService.registNewPokemon(pokemonDTO);
 
         return "redireect:/pokemon/list";
     }
